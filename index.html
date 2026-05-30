@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYX DIVINE | Armadura de Entrenamiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Metal+Mania&family=Runes&family=UnifrakturMaguntia&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Base de la Oscuridad */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Orbitron', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.95)),
+                url('https://www.transparenttextures.com/patterns/dark-matter.png'); /* Textura rugosa */
+        }
+
+        /* Contenedor de Cruces de Fondo Flotantes */
+        .background-crosses {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.03; /* Muy sutil en el fondo */
+            font-family: 'UnifrakturMaguntia', serif;
+            font-size: 12rem;
+        }
+        .bg-cross { position: absolute; }
+        .bg-cross:nth-child(1) { top: 10%; left: 5%; transform: rotate(180deg); }
+        .bg-cross:nth-child(2) { top: 40%; right: 8%; }
+        .bg-cross:nth-child(3) { bottom: 15%; left: 12%; }
+        .bg-cross:nth-child(4) { bottom: 45%; left: 45%; transform: rotate(180deg); }
+
+        /* Encabezado / Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #1a1a1a;
+            position: relative;
+        }
+
+        /* Las cruces góticas principales que flanquean el título */
+        .header-cross {
+            font-family: 'UnifrakturMaguntia', serif;
+            font-size: 5rem;
+            color: #8a8a8a;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            margin: 10px;
+            animation: pulse 3s infinite alternate;
+        }
+        .cross-inverted {
+            transform: rotate(180deg);
+        }
+
+        .brand-title {
+            font-family: 'Metal Mania', cursive;
+            font-size: 5.5rem;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 2px 2px 2px #000;
+            line-height: 1;
+            margin: 15px 0;
+        }
+
+        .brand-subtitle {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.2rem;
+            color: #888888;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        /* Separadores Góticos Visuales (Líneas con Cruces) */
+        .gothic-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 50px 0;
+            color: #333;
+        }
+        .gothic-divider::before, .gothic-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to var(--direction, right), transparent, #444, transparent);
+            max-width: 250px;
+        }
+        .gothic-divider .mid-cross {
+            font-family: 'UnifrakturMaguntia', serif;
+            font-size: 2.5rem;
+            margin: 0 20px;
+            color: #555;
+        }
+
+        /* Secciones de Contenido */
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Metal Mania', cursive;
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .history-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+            text-align: justify;
+            border-left: 3px solid #222;
+            border-right: 3px solid #222;
+            padding: 0 30px;
+            background: rgba(10, 10, 10, 0.4);
+        }
+
+        /* Cuadrícula de Frases / Lemas */
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .phrase-card {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid #1a1a1a;
+            padding: 30px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        .phrase-card:hover {
+            border-color: #555;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .phrase-card .card-cross {
+            font-family: 'UnifrakturMaguntia', serif;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #222;
+            font-size: 1.5rem;
+        }
+        .phrase-card p {
+            font-style: italic;
+            color: #d4d4d4;
+            font-size: 1rem;
+        }
+
+        /* Botón de Acción Estilo Metálico/Gótico */
+        .cta-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border: 1px solid #333;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+
+        /* Pie de Página */
+        footer {
+            background: #020202;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #111;
+            font-size: 0.8rem;
+            color: #444;
+            letter-spacing: 1px;
+        }
+        
+        footer .final-cross {
+            font-family: 'UnifrakturMaguntia', serif;
+            font-size: 2rem;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        /* Animaciones sencillas */
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsivo para móviles */
+        @media (max-width: 768px) {
+            .brand-title { font-size: 3.5rem; }
+            .header-cross { font-size: 3.5rem; }
+            .history-text { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-crosses">
+        <div class="bg-cross">†</div>
+        <div class="bg-cross">‡</div>
+        <div class="bg-cross">†</div>
+        <div class="bg-cross">‡</div>
+    </div>
+
+    <header>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <span class="header-cross cross-inverted">†</span>
+            <h1 class="brand-title">NYX DIVINE</h1>
+            <span class="header-cross cross-inverted">†</span>
+        </div>
+        <p class="brand-subtitle">Colección de Armadura de Entrenamiento</p>
+        
+        <div style="font-family: 'UnifrakturMaguntia', serif; font-size: 2.5rem; color: #333; margin: 15px;">‡</div>
+        
+        <a href="#productos" class="cta-btn">Explorar el Templo</a>
+    </header>
+
+    <section id="historia">
+        <h2>Forjados en la Oscuridad</h2>
+        
+        <div class="gothic-divider">
+            <span class="mid-cross">†</span>
+        </div>
+
+        <div class="history-text">
+            <p><strong>NYX DIVINE</strong> no nació para ser una marca de ropa común; nació para ser una armadura. Inspirada en <em>Nyx</em>, la mística y ancestral diosa de la noche, y fusionando la estética gótica-brutal con la ingeniería de rendimiento, la marca se creó con un propósito claro: vestir a los que encuentran su verdadera fuerza cuando las luces se apagan y el silencio del gimnasio empieza.</p>
+            <br>
+            <p>Cada costura, cada prenda de compresión avanzada y cada gráfico místico representan el proceso de transformación física y mental. No creemos en el camino fácil ni en la motivación superficial. Creemos en descender a las profundidades de nuestro propio esfuerzo, en abrazar el dolor del entrenamiento y en emerger transformados. NYX DIVINE es para los que no temen a la sombra, sino que se empoderan a través de ella.</p>
+        </div>
+    </section>
+
+    <section id="filosofia">
+        <h2>Lemas del Templo</h2>
+        
+        <div class="gothic-divider">
+            <span class="mid-cross">‡</span>
+        </div>
+
+        <div class="phrases-grid">
+            <div class="phrase-card">
+                <span class="card-cross">†</span>
+                <p>"Ascend the Depths."</p>
+            </div>
+            <div class="phrase-card">
+                <span class="card-cross">‡</span>
+                <p>"Nuestra misión: Empoderar a través de la sombra."</p>
+            </div>
+            <div class="phrase-card">
+                <span class="card-cross">†</span>
+                <p>"Forja tu cuerpo en el silencio; deja que tu fuerza sea divina."</p>
+            </div>
+            <div class="phrase-card">
+                <span class="card-cross">‡</span>
+                <p>"Cada repetición es un pacto con tu propia grandeza."</p>
+            </div>
+            <div class="phrase-card">
+                <span class="card-cross">†</span>
+                <p>"La comodidad es el enemigo del progreso. Abraza la brutalidad del proceso."</p>
+            </div>
+            <div class="phrase-card">
+                <span class="card-cross">‡</span>
+                <p>"Tu voluntad debe ser más dura que el hierro que levantas."</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos" style="background: rgba(10, 10, 10, 0.2); border: 1px dashed #151515; margin-bottom: 80px;">
+        <h2>El Futuro de la Fuerza</h2>
+        <div class="gothic-divider"><span class="mid-cross">†</span></div>
+        <p style="color: #888; font-style: italic; line-height: 1.8; max-width: 700px; margin: 0 auto;">
+            Hasta el momento estamos pensando en nuevas ideas y productos nuevos para nuestra empresa, vamos progresando hasta ser la marca número uno en ropa y recursos para el gym. No nos detenemos en lo convencional; cada diseño que planeamos está pensado para romper los límites de la estética fitness actual.
+        </p>
+    </section>
+
+    <footer>
+        <div class="final-cross">†</div>
+        <p>&copy; 2026 NYX DIVINE. Todos los derechos reservados bajo las sombras.</p>
+    </footer>
+
+</body>
+</html>
